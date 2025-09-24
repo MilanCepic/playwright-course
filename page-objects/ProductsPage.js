@@ -1,3 +1,5 @@
+import { expect } from "@playwright/test";
+
 export class ProductsPage {
   constructor(page) {
     this.page = page;
@@ -8,9 +10,12 @@ export class ProductsPage {
   visit = async () => {
     await this.page.goto("/");
   };
+
   addProductToBasket = async (index) => {
-    // data-qa="product-button"
-    await this.addButtons.nth(index).waitFor();
-    await this.addButtons.nth(index).click();
+    const specificAddButton = this.addButtons.nth(index);
+    await specificAddButton.waitFor();
+    await expect(specificAddButton).toHaveText("Add to Basket");
+    await specificAddButton.click();
+    await expect(specificAddButton).toHaveText("Remove from Basket");
   };
 }
