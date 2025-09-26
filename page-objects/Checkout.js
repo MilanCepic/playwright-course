@@ -7,6 +7,7 @@ export class Checkout {
     this.basketCards = page.locator('[data-qa="basket-card"]');
     this.basketItemPrice = page.locator('[data-qa="basket-item-price"]');
     this.basketItemRemuveButton = page.locator('[data-qa="basket-card-remove-item"]');
+    this.continueToCheckoutButton = page.locator('[data-qa="continue-to-checkout"]');
   }
   remuveCheapestProduct = async () => {
     await this.basketCards.first().waitFor();
@@ -24,7 +25,12 @@ export class Checkout {
     await specificRemuvwButton.waitFor();
     await specificRemuvwButton.click();
     await expect(this.basketCards).toHaveCount(itemsBeforeRemoval - 1);
+    await this.page.pause();
+  };
 
-    //await this.page.pause();
+  continueToCheckout = async () => {
+    await this.continueToCheckoutButton.waitFor();
+    await this.continueToCheckoutButton.click();
+    await this.page.pause();
   };
 }

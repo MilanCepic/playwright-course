@@ -16,4 +16,5 @@ test.only("New user full end-to-end test journey", async ({ page }) => {
 
   const checkout = new Checkout(page);
   await checkout.remuveCheapestProduct();
+  await checkout.continueToCheckout();
 });
