@@ -3,6 +3,7 @@ import { ProductsPage } from "../page-objects/ProductsPage.js";
 import { Navigation } from "../page-objects/Navigation.js";
 import { Checkout } from "../page-objects/Checkout.js";
 import { LoginPage } from "../page-objects/LoginPage.js";
+import { RegisterPage } from "../page-objects/RegisterPage.js";
 
 test.only("New user full end-to-end test journey", async ({ page }) => {
   const productsPage = new ProductsPage(page);
@@ -18,8 +19,10 @@ test.only("New user full end-to-end test journey", async ({ page }) => {
   const checkout = new Checkout(page);
   await checkout.remuveCheapestProduct();
   await checkout.continueToCheckout();
-  //await page.pause();
 
   const login = new LoginPage(page);
   await login.moveToSignup();
+
+  const registerPage = new RegisterPage(page);
+  await registerPage.signUpAsNewUser();
 });
