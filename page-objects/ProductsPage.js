@@ -35,6 +35,6 @@ export class ProductsPage {
     expect(productTitlesAfterSorting).not.toEqual(productTitlesBeforeSorting);
     // get order of products again
     // expect that these lists are different
-    //await this.page.pause();
+    //await page.pause();
   };
 }

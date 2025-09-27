@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { timeout } from "../playwright.config";
 
 export class Checkout {
   constructor(page) {
@@ -25,12 +26,11 @@ export class Checkout {
     await specificRemuvwButton.waitFor();
     await specificRemuvwButton.click();
     await expect(this.basketCards).toHaveCount(itemsBeforeRemoval - 1);
-    await this.page.pause();
   };
 
   continueToCheckout = async () => {
     await this.continueToCheckoutButton.waitFor();
     await this.continueToCheckoutButton.click();
-    await this.page.pause();
+    await this.page.waitForURL(/\/login/, { timeout: 3000 });
   };
 }
